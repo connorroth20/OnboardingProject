@@ -2,34 +2,40 @@
 
 
 
-    const app = document.getElementById('root')
-    const form = document.createElement('form')
-    const label = document.createElement('label')
-    label.innerHTML("Please Select a Country")
-
-    const select = document.createElement('select')
-
-    const container = document.createElement('div')
+    const app = document.getElementById('root');
+    const form = document.createElement('form');
 
 
-    container.setAttribute('class', 'container')
-    form.append(label)
-    form.appendChild(select)
-    app.appendChild(form)
-    app.appendChild(container)
+    const label = document.createElement('label');
+
+
+    label.innerHTML = "Please select a country";
+
+    const select = document.createElement('select');
+    select.setAttribute('name', 'countries');
+
+    
+
+    form.append(label);
+    form.appendChild(select);
+    app.appendChild(form);
+    
 
 
    
 
-    var request = new XMLHttpRequest()
+    var request = new XMLHttpRequest();
     
-    request.open('GET', 'https://xc-countries-api.herokuapp.com/api/countries/')
+    request.open('GET', 'https://xc-countries-api.herokuapp.com/api/countries/', true);
     request.onload = function(){
         var data = JSON.parse(this.response)
         if(request.status >= 200 && request.status < 400){
             data.forEach(country => {
-               const option = document.createElement('option')
-               option.innerHTML(country.name)
+               const option = document.createElement('option');
+               option.setAttribute('id', country.id);
+               option.setAttribute('value', country.code);
+               option.innerHTML = country.name;
+               
 
                select.appendChild(option)
 
@@ -38,7 +44,7 @@
         }else {
             const errorMessage = document.createElement('marquee')
             errorMessage.textContent = 'It is not working';
-            app.appendChild(errorMessage)
+            app.appendChild(errorMessage);
         }
         }
     
