@@ -1,49 +1,52 @@
 //My javascript file for the onboarding project
-console.log("hello there");
+
+
+
+    const app = document.getElementById('root')
+    const form = document.createElement('form')
+    const label = document.createElement('label')
+    label.innerHTML("Please Select a Country")
+
+    const select = document.createElement('select')
+
+    const container = document.createElement('div')
+
+
+    container.setAttribute('class', 'container')
+    form.append(label)
+    form.appendChild(select)
+    app.appendChild(form)
+    app.appendChild(container)
+
+
+   
+
+    var request = new XMLHttpRequest()
+    
+    request.open('GET', 'https://xc-countries-api.herokuapp.com/api/countries/')
+    request.onload = function(){
+        var data = JSON.parse(this.response)
+        if(request.status >= 200 && request.status < 400){
+            data.forEach(country => {
+               const option = document.createElement('option')
+               option.innerHTML(country.name)
+
+               select.appendChild(option)
+
+
+            })
+        }else {
+            const errorMessage = document.createElement('marquee')
+            errorMessage.textContent = 'It is not working';
+            app.appendChild(errorMessage)
+        }
+        }
+    
+
 
 //make a list of objects of countries that contain name, id, and states
+//'https://xc-countries-api.herokuapp.com/api/countries/')
 
-const getData = async() => {
-    let data = [];
-    const countries = await fetch("https://xc-countries-api.herokuapp.com/api/countries/")
-    .then((res) => res.json());
-  data.push(countries.name);
-
-  const country2 = await fetch("https://xc-countries-api.herokuapp.com/api/countries/")
-    .then((res) => res.json());
-  data.push(country2.name);
-  
-  console.log(data);
-
-
-}
-
-
-
-
-getData()
-
-//or try this:
-
-function getCountriesTwo() {
-    fetch("https://xc-countries-api.herokuapp.com/api/countries/")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            // Here you need to use an temporary array to store NeededInfo only 
-            let tmpArray = []
-            for (var i = 0; i < data.results.length; i++) {
-                tmpArray.push(data.results[i].name)
-            }
-
-            this.setState({
-                other: tmpArray
-            })
-        });
-};
-
-getCountriesTwo()
 
 
 
