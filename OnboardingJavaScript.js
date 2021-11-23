@@ -9,13 +9,13 @@
     const label = document.createElement('label');
     label.innerHTML = "Please select a country";
 
-    const select = document.createElement('select');
-    select.setAttribute('name', 'countries');
+    const countries = document.createElement('select');
+    countries.setAttribute('name', 'countries');
 
     
 
     form.append(label);
-    form.appendChild(select);
+    form.appendChild(countries);
     app.appendChild(form);
     
 
@@ -30,23 +30,128 @@
         if(request.status >= 200 && request.status < 400){
             data.forEach(country => {
                const option = document.createElement('option');
-               option.setAttribute('id', country.id);
+               option.setAttribute('id', country.code);
                option.setAttribute('value', country.code);
+
+               
                
                
                option.innerHTML = country.name;
-               select.appendChild(option)
+               countries.appendChild(option)
+
+               
 
 
-            })
+            }) 
+           
+            
+           
+            
+
+
+            
+
+        
         }else {
             const errorMessage = document.createElement('marquee')
             errorMessage.textContent = 'It is not working';
             app.appendChild(errorMessage);
         }
+
+        
         }
 
     request.send();
+
+    function showstates(country){
+
+       
+        var countryId = document.getElementById(country).value
+
+            if(countryId){
+
+                var request2 = new XMLHttpRequest();
+
+                const stateForm = document.createElement('form')
+    
+    
+                const label2 = document.createElement('label')
+                label2.innerHTML = "Please select a state";
+            
+                const states = document.createElement('select')
+            
+                stateForm.appendChild(label2)
+                stateForm.appendChild(states)
+            
+                app.appendChild(stateForm)
+            
+                var newUrl = "https://xc-countries-api.herokuapp.com/api/countries/" + country.code + "/states/"
+            
+                request2.open('GET', newUrl, true );
+                request2.onload = function(){
+                    var data2 = JSON.parse(this.response)
+                    if(request2.status >= 200 && request.status < 400){
+                        data2.forEach(state => {
+                            const stateOption = document.createElement('option')
+                            stateOption.setAttribute('id', state.id)
+                            stateOption.setAttribute('value', state.code)
+            
+                            stateOption.innerHTML = state.name;
+                            states.appendChild(stateOption)
+                            
+                        })
+                    }else{
+                        const errorMessage = document.createElement('marquee')
+                        errorMessage.textContent = 'It is not working';
+                        app.appendChild(errorMessage);
+                    }
+                }
+
+            
+
+
+        }
+        request2.send();
+    }
+
+    /*
+    //If country is selected
+    const stateForm = document.createElement('form')
+    
+    
+    const label2 = document.createElement('label')
+    label2.innerHTML = "Please select a state";
+
+    const states = document.createElement('select')
+
+    stateForm.appendChild(label2)
+    stateForm.appendChild(states)
+
+    app.appendChild(stateForm)
+
+    var newUrl = "https://xc-countries-api.herokuapp.com/api/countries/" + country.code + "/states/"
+
+    request.open('GET', newUrl, true );
+    request.onload = function(){
+        var data2 = JSON.parse(this.response)
+        if(request.status >= 200 && request.status < 400){
+            data2.forEach(state => {
+                const stateOption = document.createElement('option')
+                stateOption.setAttribute('id', state.id)
+                stateOption.setAttribute('value', state.code)
+
+                stateOption.innerHTML = state.name;
+                states.appendChild(stateOption)
+                
+            })
+        }else{
+            const errorMessage = document.createElement('marquee')
+            errorMessage.textContent = 'It is not working';
+            app.appendChild(errorMessage);
+        }
+    }
+
+    */
     
 
 
