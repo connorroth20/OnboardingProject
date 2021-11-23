@@ -7,8 +7,6 @@
 
 
     const label = document.createElement('label');
-
-
     label.innerHTML = "Please select a country";
 
     const select = document.createElement('select');
@@ -34,9 +32,9 @@
                const option = document.createElement('option');
                option.setAttribute('id', country.id);
                option.setAttribute('value', country.code);
-               option.innerHTML = country.name;
                
-
+               
+               option.innerHTML = country.name;
                select.appendChild(option)
 
 
@@ -47,6 +45,8 @@
             app.appendChild(errorMessage);
         }
         }
+
+    request.send();
     
 
 
