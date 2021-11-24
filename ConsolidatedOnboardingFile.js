@@ -24,6 +24,19 @@ function countryDropdown(){
     request.open('GET', 'https://xc-countries-api.herokuapp.com/api/countries/', true);
     request.onload = function(){
         var data = JSON.parse(this.response)
+
+         //Sorts through the response
+         function compareStrings(a, b) {
+            // Assuming you want case-insensitive comparison
+            a = a.toLowerCase();
+            b = b.toLowerCase();
+          
+            return (a < b) ? -1 : (a > b) ? 1 : 0;
+          }
+
+          data.sort(function(a, b){
+              return compareStrings(a.name, b.name)
+          });
         //sort response
         if(request.status >= 200 && request.status < 400){
             data.forEach(country => {
@@ -97,11 +110,26 @@ function countryDropdown(){
 
         var newUrl = "https://xc-countries-api.herokuapp.com/api/countries/" + selection.options[selection.selectedIndex].id + "/states/"
 
-    stateRequest.open('GET', newUrl, true );
-    stateRequest.onload = function(){
+         stateRequest.open('GET', newUrl, true );
+         stateRequest.onload = function(){
 
+            
+    
 
         var stateData = JSON.parse(this.response)
+
+
+        function compareStrings(a, b) {
+            // Assuming you want case-insensitive comparison
+            a = a.toLowerCase();
+            b = b.toLowerCase();
+          
+            return (a < b) ? -1 : (a > b) ? 1 : 0;
+          }
+
+          stateData.sort(function(a, b){
+              return compareStrings(a.name, b.name)
+          });
         //sort states
         if(stateRequest.status >= 200 && request.status < 400){
             stateData.forEach(state => {
