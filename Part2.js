@@ -4,6 +4,10 @@
 //sort--> Done
 //static code html
 
+//Where you are at:
+//Static code the second select. So try to get it to appear rather than crate a new one each time.
+//Try to consolidate the two scripts into one file and then put them onto the html --> 2 seperate functions
+
 
 const app = document.getElementById('root');
 let selection = document.querySelector('select');
@@ -54,12 +58,7 @@ selection.addEventListener('change', () => {
           });
 
           
-
-         
-          
-        
-        
-        //sort states
+       
         if(request2.status >= 200 && request.status < 400){
             data2.forEach(state => {
                 const stateOption = document.createElement('option')
