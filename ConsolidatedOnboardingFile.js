@@ -267,7 +267,7 @@ getStates.send();
         request.onload = function(){
 
             var data = JSON.parse(this.response)
-            console.log(data[data.length-1].id)
+            //console.log(data[data.length-1].id)
             stateId = data[data.length-1].id + 1
 
         }
@@ -297,4 +297,24 @@ getStates.send();
             countryId: countryIdMe
         }))
 
+
+
     }
+
+
+    //Since I last saw nancy I:
+    /*
+        Figured out how to static code the state
+        figured out visiblilty
+
+        figured out how to clear the options before adding new ones
+
+        static coded the adding a country
+        was able to figure out posting a country
+
+        was abke to figure out posting a state
+        was difficult to figure out how to post with regards to getting id -> hardest part
+
+        to do:
+        add comments, make it look pretty
+    */
