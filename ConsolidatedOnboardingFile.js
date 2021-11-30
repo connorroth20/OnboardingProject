@@ -1,4 +1,7 @@
 function countryDropdown(){
+
+    
+
     var request = new XMLHttpRequest();
     
     request.open('GET', 'https://xc-countries-api.herokuapp.com/api/countries/', true);
@@ -20,34 +23,16 @@ function countryDropdown(){
         //sort response
         if(request.status >= 200 && request.status < 400){
             var select = document.getElementById("Country-Select")
+
+
+            
             data.forEach(country => {
                 select.options[select.options.length] = new Option(country.name, country.code);
                 
                 
+                
             })
-            //data.forEach(country => {
-               //const option = document.createElement('option');
-               //option.setAttribute('id', country.id);
-               //option.setAttribute('value', country.code);
-
-               
-               
-               
-               //option.innerHTML = country.name;
-               //countries.appendChild(option)
-
-               
-
-
-            //}) 
-           
             
-           
-            
-
-
-            
-
         
         }else {
             const errorMessage = document.createElement('marquee')
@@ -55,7 +40,14 @@ function countryDropdown(){
             app.appendChild(errorMessage);
         }
 
+        
+       
+
+
+
     }
+
+   
 
         
         
@@ -68,33 +60,28 @@ function countryDropdown(){
 
 
  
-    
+
+
+    //Displays the states of the selected country   
     function showStates(){
 
-        const app = document.getElementById('root');
+        
+        document.getElementById("State-Label").style.visibility = "visible";
+        document.getElementById("State-Select").style.visibility = "visible";
+
+      
         let selection = document.querySelector('select');
         let result = document.querySelector('h2')
 
-selection.addEventListener('change', () => {
+        selection.addEventListener('change', () => {
+
+    
 
 
     result.innerText = selection.options[selection.selectedIndex].text
-    //selection.options[selection.selectedIndex].text;
+    
 
     var getStates = new XMLHttpRequest();
-
-    const stateForm = document.createElement('form')
-
-
-    const stateSelector = document.createElement('label')
-    stateSelector.innerHTML = "Please select a state";
-
-    const states = document.createElement('select')
-
-    stateForm.appendChild(stateSelector)
-    stateForm.appendChild(states)
-
-    app.appendChild(stateForm)
 
     var newUrl = "https://xc-countries-api.herokuapp.com/api/countries/" + selection.options[selection.selectedIndex].value + "/states/"
 
@@ -122,14 +109,10 @@ selection.addEventListener('change', () => {
           
        
         if(getStates.status >= 200 && getStates.status < 400){
+            var select = document.getElementById("State-Select")
             data2.forEach(state => {
-                const stateOption = document.createElement('option')
-                stateOption.setAttribute('id', state.id)
-                stateOption.setAttribute('value', state.code)
 
-                stateOption.innerHTML = state.name;
-                states.appendChild(stateOption)
-                
+                select.options[select.options.length] = new Option(state.name, state.code);
                 
             })
         }else{
@@ -143,4 +126,69 @@ selection.addEventListener('change', () => {
 getStates.send();
 
 });
+
+
+    }
+
+
+    //Add a country here. Use a button to add a country. The button is going to trigger two inputs that alow the user to type a name and a country code. 
+    //These will be two seperate input boxes, with 2 seperate id's to reference them with javascript.
+    function inputCountryToAdd(){
+
+
+        document.getElementById("AddCountryNameLabel").style.visibility = "visible"
+        document.getElementById("countryName").style.visibility = "visible"
+
+        document.getElementById("AddCountryCodeLabel").style.visibility = "visible"
+        document.getElementById("countryCode").style.visibility = "visible"
+        
+        document.getElementById("postMe").style.visibility = "visible"
+        
+
+        
+    }
+    //this will ten post the chosen country
+    function postCountry(){
+
+        var select = document.getElementById("Country-Select")
+        
+
+        let  idMe = select.options.length + 1;
+
+        
+       
+        let nameInput = document.getElementById('countryName')
+        let codeInput = document.getElementById('countryCode')
+
+        let nameMe = nameInput.value;
+        let codeMe = codeInput.value;
+
+      
+
+        let postMe = new XMLHttpRequest();
+
+        postMe.open('POST', 'https://xc-countries-api.herokuapp.com/api/countries/', true)
+        postMe.setRequestHeader('Content-Type', 'application/json')
+        postMe.send(JSON.stringify({
+        
+            id: idMe,
+            name: nameMe,
+            code: codeMe
+        }))
+
+
+        document.getElementById("changeMePlease").style.visibility = "visible"
+        
+
+         
+
+
+
+
+
+
+        
+
+
+
     }
