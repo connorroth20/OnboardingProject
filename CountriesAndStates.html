@@ -18,7 +18,7 @@
 
             <label>Please Select a Country</label>
             <select id="Country-Select" onclick = 'showStates()'>Please Select a Country: </select>
-            <script>countryDropdown()</script> 
+            <script>countryDropdown("Country-Select", "code")</script> 
 
 
 
@@ -45,7 +45,7 @@
 
 
         </div>
-        <div>
+        <div >
            <button onclick = "inputCountryToAdd()">Add Country</button>
 
 
@@ -55,11 +55,31 @@
            <label id = "AddCountryCodeLabel" style= "visibility: hidden;">Type the Country's Code</label>
            <input type = "text" id = "countryCode"  style ="visibility:hidden">
 
-           
+
 
            <button onclick = "postCountry()" id = "postMe" style = "visibility: hidden;">Post Country</button>
 
            <h2 id = "changeMePlease" style = "visibility: hidden;">Your new Country has Been Posted</h2>
+        </div>
+
+
+        
+        <div>
+            <button onclick = "inputStateToAdd()">Add State</button>
+
+            <label id= "selectLabel"style = "visibility:hidden">Select a Country to Add a State to</label>
+            <select id = "countryChooser" style = "visibility:hidden"></select>
+            <script>countryDropdown("countryChooser", "id")</script>
+
+            <label id = "AddStateNameLabel" style = "visibility:hidden">Type the State's Name</label>
+           <input type = "text" id = "stateName"  style ="visibility:hidden">
+
+           <label id = "AddStateCodeLabel" style= "visibility: hidden;">Type the State's Code</label>
+           <input type = "text" id = "stateCode"  style ="visibility:hidden">
+
+
+           <button onclick = "postState()" id = "postMe2" style = "visibility: hidden;">Post State</button>
+
         </div>
 
         
