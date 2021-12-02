@@ -80,9 +80,7 @@
     //Displays the states of the selected country   
     function showStates(){
 
-        //Makes the State select visible
-        document.getElementById("State-Label").style.visibility = "visible";
-        document.getElementById("State-Select").style.visibility = "visible";
+        
 
         //Uses even listener to display chosen country
         let selection = document.querySelector('select');
@@ -153,7 +151,12 @@
             errorMessage.textContent = 'It is not working';
             app.appendChild(errorMessage);
         }
+
     }
+
+    //Makes the State select visible
+    document.getElementById("State-Label").style.visibility = "visible";
+    document.getElementById("State-Select").style.visibility = "visible";
 
 
 getStates.send();
@@ -169,6 +172,7 @@ getStates.send();
     function inputCountryToAdd(){
 
 
+        document.getElementById("hideMePls").style.visibility = "hidden"
         //Makes two input forms visible and a post me button
         document.getElementById("AddCountryNameLabel").style.visibility = "visible"
         document.getElementById("countryName").style.visibility = "visible"
@@ -176,7 +180,7 @@ getStates.send();
         document.getElementById("AddCountryCodeLabel").style.visibility = "visible"
         document.getElementById("countryCode").style.visibility = "visible"
         
-        document.getElementById("postMe").style.visibility = "visible"
+        //document.getElementById("postMe").style.visibility = "visible"
         
 
         
@@ -188,8 +192,7 @@ getStates.send();
         
         var select = document.getElementById("Country-Select")
         
-        //The total amount of countries + 1 is the id of the new country.
-        let  idMe = select.options.length + 1;
+        
 
         
        
@@ -209,7 +212,7 @@ getStates.send();
         postMe.setRequestHeader('Content-Type', 'application/json')
         postMe.send(JSON.stringify({
         
-            id: idMe,
+            
             name: nameMe,
             code: codeMe
         }))
@@ -218,6 +221,8 @@ getStates.send();
         //This was just for error handling.
         document.getElementById("changeMePlease").style.visibility = "visible"
         
+
+        document.getElementById("reload").style.visibility = "visible"
 
          
 
@@ -230,6 +235,10 @@ getStates.send();
 
 
 
+    }
+
+    function showCPostButton(){
+        document.getElementById("postMe").style.visibility = "visible"
     }
 
     //bugs to be fixed: when I change my coutnry selection, I want to replace the state values instead of adding new one
@@ -246,6 +255,7 @@ getStates.send();
     function inputStateToAdd(){
 
 
+        document.getElementById("hideAddState").style.visibility = "hidden"
 
         //makes a select visible to choose country to add a state to
         document.getElementById("selectLabel").style.visibility = "visible"
@@ -259,8 +269,12 @@ getStates.send();
         document.getElementById("AddStateCodeLabel").style.visibility = "visible"
         document.getElementById("stateCode").style.visibility = "visible"
         
-        document.getElementById("postMe2").style.visibility = "visible"
+        
 
+    }
+
+    function showSPostButton(){
+        document.getElementById("postMe2").style.visibility = "visible"
     }
 
     
@@ -276,25 +290,6 @@ getStates.send();
         //Need to get country code
         let countryIdMe = select.value
 
-        //now get state id --> don't think this will work, need to find a way to get all the state data. Maybe a get call to the API first then store the last state + 1
-        var stateId = 0
-       
-
-        //opens a request to get the number of states
-        var request = new XMLHttpRequest();
-    
-        //this seems inneficient, but to me is the best way to get the number of states for every country
-        request.open('GET', 'https://xc-countries-api.herokuapp.com/api/states/', true);
-        request.onload = function(){
-
-            var data = JSON.parse(this.response)
-            //console.log(data[data.length-1].id)
-            stateId = data[data.length-1].id + 1
-
-        }
-        request.send()
-        //the number of states + 1 is the id of the new state.
-        //yeah I think open a request here to get the names id of the last state.
 
 
         let nameInput = document.getElementById('stateName')
@@ -313,12 +308,14 @@ getStates.send();
         postMe.open('POST',  'https://xc-countries-api.herokuapp.com/api/states/', true)
         postMe.setRequestHeader('Content-Type', 'application/json')
         postMe.send(JSON.stringify({
-        //uses processsed data to post
-            id: stateId,
+        //uses processsed data to post  
+            //id: stateId,
             name: nameMe,
             code: codeMe,
             countryId: countryIdMe
         }))
+
+        document.getElementById("reload2").style.visibility = "visible"
 
 
 
@@ -341,3 +338,8 @@ getStates.send();
         to do:
         add comments, make it look pretty
     */
+
+        //Autorefresh when post
+        //hide button when making new state/country
+        //have one country dropdown --> take out parameters
+        //add styling

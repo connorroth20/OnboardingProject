@@ -20,7 +20,9 @@
 
             <!-- Country selector, when selection is made showStates is called -->
             <label>Please Select a Country</label>
-            <select id="Country-Select" onclick = 'showStates()'>Please Select a Country: </select>
+            <select id="Country-Select" onclick = 'showStates()'>Please Select a Country: 
+                <option value="none" selected disabled hidden>Select an Option</option>
+            </select>
             <script>countryDropdown("Country-Select", "code")</script> 
 
 
@@ -55,7 +57,7 @@
         <div >
 
             <!-- Makes everything become visible once button is pressed -->
-           <button onclick = "inputCountryToAdd()">Add Country</button>
+           <button id = "hideMePls" onclick = "inputCountryToAdd()" style = "visibility: visible;">Add Country</button>
 
 
 
@@ -64,7 +66,7 @@
            <input type = "text" id = "countryName"  style ="visibility:hidden">
 
            <label id = "AddCountryCodeLabel" style= "visibility: hidden;">Type the Country's Code</label>
-           <input type = "text" id = "countryCode"  style ="visibility:hidden">
+           <input type = "text" id = "countryCode" oninput="showCPostButton()" style ="visibility:hidden">
 
 
 
@@ -73,17 +75,22 @@
 
            <!-- For error control -->
            <h2 id = "changeMePlease" style = "visibility: hidden;">Your new Country has Been Posted</h2>
+
+           <!-- Reloads page -->
+           <button id = "reload" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
+
         </div>
 
 
         <!-- HTML for posting a state to the API -->
         <div>
             <!-- Makes input forms visible -->
-            <button onclick = "inputStateToAdd()">Add State</button>
+            <button onclick = "inputStateToAdd()" id = "hideAddState">Add State</button>
 
             <!-- Select label allows user to input a country, will use previous javascript method to populate the select with the country ID's -->
             <label id= "selectLabel"style = "visibility:hidden">Select a Country to Add a State to</label>
-            <select id = "countryChooser" style = "visibility:hidden"></select>
+            <select id = "countryChooser" style = "visibility:hidden">
+            <option value="none" selected disabled hidden>Select an Option</option></select>
 
             <script>countryDropdown("countryChooser", "id")</script>
 
@@ -93,11 +100,14 @@
            <input type = "text" id = "stateName"  style ="visibility:hidden">
 
            <label id = "AddStateCodeLabel" style= "visibility: hidden;">Type the State's Code</label>
-           <input type = "text" id = "stateCode"  style ="visibility:hidden">
+           <input type = "text" id = "stateCode" oninput="showSPostButton()"  style ="visibility:hidden">
 
 
            <!-- Posts a new state to the API -->
            <button onclick = "postState()" id = "postMe2" style = "visibility: hidden;">Post State</button>
+
+           <!-- Reloads page -->
+           <button id = "reload2" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
 
         </div>
 
@@ -113,3 +123,5 @@
 
 
 </html>
+
+
