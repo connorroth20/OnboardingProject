@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!--Javascript to be used throughout the web page -->
         <title> Countries and States </title>
         <script type = "text/javascript" src = "ConsolidatedOnboardingFile.js"></script>
 
@@ -10,22 +11,26 @@
 
     <body>
         
+        
         <h1 class = 'header'> Countries and States </h1>
        
             
        
         <div id = "root" >
 
+            <!-- Country selector, when selection is made showStates is called -->
             <label>Please Select a Country</label>
             <select id="Country-Select" onclick = 'showStates()'>Please Select a Country: </select>
             <script>countryDropdown("Country-Select", "code")</script> 
 
 
 
+            <!-- For error handling and to show selection -->
             <h2>Result</h2>
 
             
 
+            <!-- becomes visible once a country is selected -->
             <label id = 'State-Label' style = "visibility:hidden">Please Select a State</label>
             <select id ="State-Select" style = "visibility:hidden">Please Select a State:</select>
             
@@ -45,10 +50,16 @@
 
 
         </div>
+
+        <!-- Next section posts countries to the API -->
         <div >
+
+            <!-- Makes everything become visible once button is pressed -->
            <button onclick = "inputCountryToAdd()">Add Country</button>
 
 
+
+           <!-- Two input forms to enter names of new country -->
            <label id = "AddCountryNameLabel" style = "visibility:hidden">Type the Country's Name</label>
            <input type = "text" id = "countryName"  style ="visibility:hidden">
 
@@ -57,27 +68,35 @@
 
 
 
+           <!-- posts the country after input has been entered -->
            <button onclick = "postCountry()" id = "postMe" style = "visibility: hidden;">Post Country</button>
 
+           <!-- For error control -->
            <h2 id = "changeMePlease" style = "visibility: hidden;">Your new Country has Been Posted</h2>
         </div>
 
 
-        
+        <!-- HTML for posting a state to the API -->
         <div>
+            <!-- Makes input forms visible -->
             <button onclick = "inputStateToAdd()">Add State</button>
 
+            <!-- Select label allows user to input a country, will use previous javascript method to populate the select with the country ID's -->
             <label id= "selectLabel"style = "visibility:hidden">Select a Country to Add a State to</label>
             <select id = "countryChooser" style = "visibility:hidden"></select>
+
             <script>countryDropdown("countryChooser", "id")</script>
 
-            <label id = "AddStateNameLabel" style = "visibility:hidden">Type the State's Name</label>
+
+            <!-- Inputs for the new state -->
+           <label id = "AddStateNameLabel" style = "visibility:hidden">Type the State's Name</label>
            <input type = "text" id = "stateName"  style ="visibility:hidden">
 
            <label id = "AddStateCodeLabel" style= "visibility: hidden;">Type the State's Code</label>
            <input type = "text" id = "stateCode"  style ="visibility:hidden">
 
 
+           <!-- Posts a new state to the API -->
            <button onclick = "postState()" id = "postMe2" style = "visibility: hidden;">Post State</button>
 
         </div>

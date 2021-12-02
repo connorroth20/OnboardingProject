@@ -1,7 +1,10 @@
-function countryDropdown(selectName, codeOrId){
+    //Populates a select with countries, depending on the parameters, the country's code or id # will be saved
+    //into the select options.
+    function countryDropdown(selectName, codeOrId){
 
     
 
+    //Opens request for handling API data
     var request = new XMLHttpRequest();
     
     request.open('GET', 'https://xc-countries-api.herokuapp.com/api/countries/', true);
@@ -20,13 +23,17 @@ function countryDropdown(selectName, codeOrId){
           data.sort(function(a, b){
               return compareStrings(a.name, b.name)
           });
-        //sort response
+        
+          //Handles errors, not found url or not found data
         if(request.status >= 200 && request.status < 400){
             var select = document.getElementById(selectName)
 
 
-            
+            //Populates the options of a select
             data.forEach(country => {
+                //If country code is needed, the option will include this,
+                //else it will include the country ID. This is important
+                //for posting data and getting state data.
                 if(codeOrId == "code")
                 {
                     select.options[select.options.length] = new Option(country.name, country.code);
@@ -41,7 +48,7 @@ function countryDropdown(selectName, codeOrId){
                 
             })
             
-        
+        //error handling
         }else {
             const errorMessage = document.createElement('marquee')
             errorMessage.textContent = 'It is not working';
@@ -73,44 +80,47 @@ function countryDropdown(selectName, codeOrId){
     //Displays the states of the selected country   
     function showStates(){
 
-        
+        //Makes the State select visible
         document.getElementById("State-Label").style.visibility = "visible";
         document.getElementById("State-Select").style.visibility = "visible";
 
-      
+        //Uses even listener to display chosen country
         let selection = document.querySelector('select');
         let result = document.querySelector('h2')
 
+        //Changes the HTML once selection is chosen
         selection.addEventListener('change', () => {
 
     
 
 
-    result.innerText = selection.options[selection.selectedIndex].text
+         result.innerText = selection.options[selection.selectedIndex].text
     
 
-    var getStates = new XMLHttpRequest();
+        //new request for getting states from API
+         var getStates = new XMLHttpRequest();
 
-    var newUrl = "https://xc-countries-api.herokuapp.com/api/countries/" + selection.options[selection.selectedIndex].value + "/states/"
+        //Here the country code is needed to complete the url
+         var newUrl = "https://xc-countries-api.herokuapp.com/api/countries/" + selection.options[selection.selectedIndex].value + "/states/"
 
-    getStates.open('GET', newUrl, true );
-    getStates.onload = function(){
+         getStates.open('GET', newUrl, true );
+         getStates.onload = function(){
 
-        var data2 = JSON.parse(this.response)
+            var data2 = JSON.parse(this.response)
         
 
 
-        //Sorts throught the JSON data
+            //Sorts throught the JSON data
         
-        function compareStrings(a, b) {
+            function compareStrings(a, b) {
             // Assuming you want case-insensitive comparison
-            a = a.toLowerCase();
-            b = b.toLowerCase();
+                a = a.toLowerCase();
+                b = b.toLowerCase();
           
-            return (a < b) ? -1 : (a > b) ? 1 : 0;
-          }
+                return (a < b) ? -1 : (a > b) ? 1 : 0;
+             }
 
-          data2.sort(function(a, b){
+           data2.sort(function(a, b){
               return compareStrings(a.name, b.name)
           });
 
@@ -127,7 +137,9 @@ function countryDropdown(selectName, codeOrId){
          // using the function:
          removeOptions(document.getElementById('State-Select'));
           
-       
+         
+
+         //Same as before, error handling and populating a select with states this time
         if(getStates.status >= 200 && getStates.status < 400){
             var select = document.getElementById("State-Select")
             
@@ -157,6 +169,7 @@ getStates.send();
     function inputCountryToAdd(){
 
 
+        //Makes two input forms visible and a post me button
         document.getElementById("AddCountryNameLabel").style.visibility = "visible"
         document.getElementById("countryName").style.visibility = "visible"
 
@@ -171,9 +184,11 @@ getStates.send();
     //this will then post the chosen country
     function postCountry(){
 
+        //Gets reference to the countries in a list, to get the amount of countries there are
+        
         var select = document.getElementById("Country-Select")
         
-
+        //The total amount of countries + 1 is the id of the new country.
         let  idMe = select.options.length + 1;
 
         
@@ -181,6 +196,7 @@ getStates.send();
         let nameInput = document.getElementById('countryName')
         let codeInput = document.getElementById('countryCode')
 
+        //Gets the information added from the input form
         let nameMe = nameInput.value;
         let codeMe = codeInput.value;
 
@@ -188,6 +204,7 @@ getStates.send();
 
         let postMe = new XMLHttpRequest();
 
+        //posts a request with the current information of the new country
         postMe.open('POST', 'https://xc-countries-api.herokuapp.com/api/countries/', true)
         postMe.setRequestHeader('Content-Type', 'application/json')
         postMe.send(JSON.stringify({
@@ -198,6 +215,7 @@ getStates.send();
         }))
 
 
+        //This was just for error handling.
         document.getElementById("changeMePlease").style.visibility = "visible"
         
 
@@ -229,9 +247,11 @@ getStates.send();
 
 
 
+        //makes a select visible to choose country to add a state to
         document.getElementById("selectLabel").style.visibility = "visible"
         document.getElementById("countryChooser").style.visibility = "visible"
 
+        //makes the rest visible, similar to country adder
         document.getElementById("AddStateNameLabel").style.visibility = "visible"
         document.getElementById("stateName").style.visibility = "visible"
 
@@ -243,13 +263,12 @@ getStates.send();
 
     }
 
-    function addCountryWithCode(){
-
-    }
+    
 
     //Posts the State to the API
     function postState(){
 
+        //gets the second country dropdown, this dropdown has reference to the country ID's instead of coutnry codes
         var select = document.getElementById("countryChooser")
 
 
@@ -261,8 +280,10 @@ getStates.send();
         var stateId = 0
        
 
+        //opens a request to get the number of states
         var request = new XMLHttpRequest();
     
+        //this seems inneficient, but to me is the best way to get the number of states for every country
         request.open('GET', 'https://xc-countries-api.herokuapp.com/api/states/', true);
         request.onload = function(){
 
@@ -272,25 +293,27 @@ getStates.send();
 
         }
         request.send()
-        
+        //the number of states + 1 is the id of the new state.
         //yeah I think open a request here to get the names id of the last state.
 
 
         let nameInput = document.getElementById('stateName')
         let codeInput = document.getElementById('stateCode')
 
+        //same as before, gets the input from an input form
         let nameMe = nameInput.value;
         let codeMe = codeInput.value;
 
 
         
 
+        //posts an HTTP request
         let postMe = new XMLHttpRequest();
 
         postMe.open('POST',  'https://xc-countries-api.herokuapp.com/api/states/', true)
         postMe.setRequestHeader('Content-Type', 'application/json')
         postMe.send(JSON.stringify({
-        
+        //uses processsed data to post
             id: stateId,
             name: nameMe,
             code: codeMe,
@@ -307,7 +330,7 @@ getStates.send();
         Figured out how to static code the state
         figured out visiblilty
 
-        figured out how to clear the options before adding new ones
+        figured out how to clear the options before adding new ones: https://stackoverflow.com/questions/3364493/how-do-i-clear-all-options-in-a-dropdown-box
 
         static coded the adding a country
         was able to figure out posting a country
