@@ -89,10 +89,12 @@
         //Changes the HTML once selection is chosen
         selection.addEventListener('change', () => {
 
+        
     
 
 
-         result.innerText = selection.options[selection.selectedIndex].text
+         result.innerText = "You selected " + selection.options[selection.selectedIndex].text
+         result.style.visibility = "visible"
     
 
         //new request for getting states from API
@@ -143,7 +145,7 @@
             
             data2.forEach(state => {
 
-                select.options[select.options.length] = new Option(state.name, state.code);
+                select.options[select.options.length] = new Option(state.name, state.code);   
                 
             })
         }else{

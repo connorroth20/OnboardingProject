@@ -1,0 +1,10 @@
+
+
+header {
+    background-color:cornflowerblue ;
+    border-bottom: 1px solid rgb(3, 168, 3);
+
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}

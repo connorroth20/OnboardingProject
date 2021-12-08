@@ -1,0 +1,11 @@
+header {
+    background-color:cornflowerblue ;
+    border-bottom: 1px solid rgb(3, 168, 3);
+
+    text-align: center;
+    font-family: 'Oswald', fantasy;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+

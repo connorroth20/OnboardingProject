@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head >
         <!--Javascript to be used throughout the web page -->
         <title> Countries and States </title>
         <script type = "text/javascript" src = "ConsolidatedOnboardingFile.js"></script>
 
+
+        <link href="https://fonts.googleapis.com/css?family=Oswald:300,700|Varela+Round" rel="stylesheet">
+        <link rel ="stylesheet" href= "style.css">
+
+        
+
+        
         
 
     </head>
 
     <body>
-        
-        
+        <header>
+            <p> <strong>Welcome to My Onboarding Project!</strong></p>
+        </header>
+
+        <iframe src="https://giphy.com/embed/mf8UbIDew7e8g" width="480" height="411" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/earth-mf8UbIDew7e8g"></a></p>
         <h1 class = 'header'> Countries and States </h1>
        
             
@@ -19,8 +29,8 @@
         <div id = "root" >
 
             <!-- Country selector, when selection is made showStates is called -->
-            <label>Please Select a Country</label>
-            <select id="Country-Select" onclick = 'showStates()'>Please Select a Country: 
+            <label class = "country-select">Please Select a Country</label>
+            <select class = "country-select" id="Country-Select" onclick = 'showStates()'>Please Select a Country: 
                 <option value="none" selected disabled hidden>Select an Option</option>
             </select>
             <script>countryDropdown("Country-Select", "code")</script> 
@@ -28,13 +38,13 @@
 
 
             <!-- For error handling and to show selection -->
-            <h2>Result</h2>
+            <h2 style = "visibility:hidden">Result</h2>
 
             
 
             <!-- becomes visible once a country is selected -->
-            <label id = 'State-Label' style = "visibility:hidden">Please Select a State</label>
-            <select id ="State-Select" style = "visibility:hidden">Please Select a State:</select>
+            <label class = "state-select" id = 'State-Label' style = "visibility:hidden">Please Select a State</label>
+            <select class = "state-select" id ="State-Select" style = "visibility:hidden">Please Select a State:</select>
             
 
             
@@ -109,6 +119,7 @@
            <!-- Reloads page -->
            <button id = "reload2" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
 
+           <iframe src="https://giphy.com/embed/1iTHHR8KaiDyhkHe" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bbcearth-earth-bbc-thehunt-1iTHHR8KaiDyhkHe"></a></p>
         </div>
 
         
@@ -123,5 +134,18 @@
 
 
 </html>
+
+<!-- What I want to do now
+1. I want to add a select button (like to the two dots) that will ask the user if they want to choose a new country or current
+this will allow for more accesibility and choices for them
+2. I want to color it, make it blue and green like the earth so it is appealing 
+3. I also want to include a picture in there 
+4. Maybe, just for fun, include a picture or link that gives more information about selected country?? This could be a challenge but also very fun
+5. Embed a gif
+6. make it scrollable/look good
+7. have different sections
+
+For myself: 
+Create a stock trading app or device that will manage my investments and give me recommendations for the future.-->
 
 
