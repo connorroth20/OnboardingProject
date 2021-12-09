@@ -21,7 +21,9 @@
             <p> <strong>Welcome to My Onboarding Project!</strong></p>
         </header>
 
-        <iframe src="https://giphy.com/embed/mf8UbIDew7e8g" width="480" height="411" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/earth-mf8UbIDew7e8g"></a></p>
+         <iframe src="https://giphy.com/embed/mf8UbIDew7e8g" width="480" height="411" frameBorder="0" class="giphy-embed1" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/earth-mf8UbIDew7e8g"></a></p>
+
+        
         <h1 class = 'header'> Countries and States </h1>
        
             
@@ -29,8 +31,8 @@
         <div id = "root" >
 
             <!-- Country selector, when selection is made showStates is called -->
-            <label class = "country-select">Please Select a Country</label>
-            <select class = "country-select" id="Country-Select" onclick = 'showStates()'>Please Select a Country: 
+            <label class = "select1">Please Select a Country</label>
+            <select class = "select2" id="Country-Select" onclick = 'showStates()'>Please Select a Country: 
                 <option value="none" selected disabled hidden>Select an Option</option>
             </select>
             <script>countryDropdown("Country-Select", "code")</script> 
@@ -38,13 +40,16 @@
 
 
             <!-- For error handling and to show selection -->
-            <h2 style = "visibility:hidden">Result</h2>
+            <h2 class = "header" style = "visibility:hidden">Result</h2>
 
             
 
             <!-- becomes visible once a country is selected -->
-            <label class = "state-select" id = 'State-Label' style = "visibility:hidden">Please Select a State</label>
-            <select class = "state-select" id ="State-Select" style = "visibility:hidden">Please Select a State:</select>
+            <label class = "select1" id = 'State-Label' style = "visibility:hidden">Please Select a State</label>
+            <select class = "select2" id ="State-Select" style = "visibility:hidden">Please Select a State:
+                <option value="none" selected disabled hidden>Select an Option</option>
+            </select>
+            
             
 
             
@@ -119,7 +124,7 @@
            <!-- Reloads page -->
            <button id = "reload2" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
 
-           <iframe src="https://giphy.com/embed/1iTHHR8KaiDyhkHe" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bbcearth-earth-bbc-thehunt-1iTHHR8KaiDyhkHe"></a></p>
+          <!--<iframe src="https://giphy.com/embed/1iTHHR8KaiDyhkHe" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bbcearth-earth-bbc-thehunt-1iTHHR8KaiDyhkHe"></a></p>--> 
         </div>
 
         
