@@ -24,7 +24,7 @@
          <iframe src="https://giphy.com/embed/mf8UbIDew7e8g" width="480" height="411" frameBorder="0" class="giphy-embed1" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/earth-mf8UbIDew7e8g"></a></p>
 
         
-        <h1 class = 'header'> Countries and States </h1>
+        <h1 class = 'header1'> Countries and States </h1>
        
             
        
@@ -40,15 +40,17 @@
 
 
             <!-- For error handling and to show selection -->
-            <h2 class = "header" style = "visibility:hidden">Result</h2>
+            <h2 class = "header2" style = "visibility:hidden">Result</h2>
 
             
 
             <!-- becomes visible once a country is selected -->
             <label class = "select1" id = 'State-Label' style = "visibility:hidden">Please Select a State</label>
-            <select class = "select2" id ="State-Select" style = "visibility:hidden">Please Select a State:
+            <select class = "select2" id ="State-Select" style = "visibility:hidden" onclick = 'displayChoice()'>Please Select a State:
                 <option value="none" selected disabled hidden>Select an Option</option>
             </select>
+
+            <h2 class = "header2" id = "statechoice" style = "visibility: hidden;">Results</h2>
             
             
 
@@ -72,27 +74,30 @@
         <div >
 
             <!-- Makes everything become visible once button is pressed -->
-           <button id = "hideMePls" onclick = "inputCountryToAdd()" style = "visibility: visible;">Add Country</button>
+           <button class = "countryButton" id = "hideMePls" onclick = "inputCountryToAdd()" style = "visibility: visible;">Add Country</button>
 
 
+           <div class = "inputDiv">
+         <!-- Two input forms to enter names of new country -->
+           <label class = "countryFormText" id = "AddCountryNameLabel" style = "visibility:hidden">Type the Country's Name</label>
+           <input class = "countryForm" type = "text" id = "countryName"  style ="visibility:hidden">
 
-           <!-- Two input forms to enter names of new country -->
-           <label id = "AddCountryNameLabel" style = "visibility:hidden">Type the Country's Name</label>
-           <input type = "text" id = "countryName"  style ="visibility:hidden">
-
-           <label id = "AddCountryCodeLabel" style= "visibility: hidden;">Type the Country's Code</label>
-           <input type = "text" id = "countryCode" oninput="showCPostButton()" style ="visibility:hidden">
+           <label class = "countryFormText" id = "AddCountryCodeLabel" style= "visibility: hidden;">Type the Country's Code</label>
+           <input class = "countryForm" type = "text" id = "countryCode" oninput="showCPostButton()" style ="visibility:hidden">
 
 
 
            <!-- posts the country after input has been entered -->
-           <button onclick = "postCountry()" id = "postMe" style = "visibility: hidden;">Post Country</button>
+           <button class = "countryForm" onclick = "postCountry()" id = "postMe" style = "visibility: hidden;">Post Country</button>
 
            <!-- For error control -->
            <h2 id = "changeMePlease" style = "visibility: hidden;">Your new Country has Been Posted</h2>
 
            <!-- Reloads page -->
-           <button id = "reload" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
+           <button class = "countryForm" id = "reload" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
+
+            </div>
+
 
         </div>
 
@@ -100,29 +105,33 @@
         <!-- HTML for posting a state to the API -->
         <div>
             <!-- Makes input forms visible -->
-            <button onclick = "inputStateToAdd()" id = "hideAddState">Add State</button>
+           
+            <button class = "stateButton" onclick = "inputStateToAdd()" id = "hideAddState">Add State</button>
 
             <!-- Select label allows user to input a country, will use previous javascript method to populate the select with the country ID's -->
-            <label id= "selectLabel"style = "visibility:hidden">Select a Country to Add a State to</label>
-            <select id = "countryChooser" style = "visibility:hidden">
+            <label class = "countryFormText" id= "selectLabel"style = "visibility:hidden">Select a Country to Add a State to</label>
+            <select class = "countryForm" id = "countryChooser" style = "visibility:hidden">
             <option value="none" selected disabled hidden>Select an Option</option></select>
 
             <script>countryDropdown("countryChooser", "id")</script>
 
 
             <!-- Inputs for the new state -->
-           <label id = "AddStateNameLabel" style = "visibility:hidden">Type the State's Name</label>
-           <input type = "text" id = "stateName"  style ="visibility:hidden">
+            <div class = "inputDiv">
+           <label class = "countryFormText" id = "AddStateNameLabel" style = "visibility:hidden">Type the State's Name</label>
+           <input class = "countryForm" type = "text" id = "stateName"  style ="visibility:hidden">
 
-           <label id = "AddStateCodeLabel" style= "visibility: hidden;">Type the State's Code</label>
-           <input type = "text" id = "stateCode" oninput="showSPostButton()"  style ="visibility:hidden">
+           <label class = "countryFormText" id = "AddStateCodeLabel" style= "visibility: hidden;">Type the State's Code</label>
+           <input class = "countryForm" type = "text" id = "stateCode" oninput="showSPostButton()"  style ="visibility:hidden">
 
 
            <!-- Posts a new state to the API -->
-           <button onclick = "postState()" id = "postMe2" style = "visibility: hidden;">Post State</button>
+           <button class = "countryForm" onclick = "postState()" id = "postMe2" style = "visibility: hidden;">Post State</button>
 
            <!-- Reloads page -->
-           <button id = "reload2" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
+           <button  class = "countryForm" id = "reload2" style = "visibility: hidden;" onclick = "window.location.reload()">Click to See Results</button>
+
+            </div>
 
           <!--<iframe src="https://giphy.com/embed/1iTHHR8KaiDyhkHe" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bbcearth-earth-bbc-thehunt-1iTHHR8KaiDyhkHe"></a></p>--> 
         </div>

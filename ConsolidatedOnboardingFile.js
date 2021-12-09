@@ -323,6 +323,15 @@ getStates.send();
 
     }
 
+    function displayChoice(){
+        var header = document.getElementById("statechoice")
+        var selection = document.getElementById("State-Select")
+
+        header.innerText = "You selected " +  selection.options[selection.selectedIndex].text;
+
+        header.style.visibility = "visible"
+    }
+
 
     //Since I last saw nancy I:
     /*
